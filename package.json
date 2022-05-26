@@ -1,0 +1,19 @@
+{
+  "name": "cypress-ts-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cy:open",
+    "cy:run": "cy:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^9.7.0",
+    "cypress-mochawesome-reporter": "^3.1.0",
+    "prettier": "^2.6.2",
+    "typescript": "^4.7.2"
+  }
+}
