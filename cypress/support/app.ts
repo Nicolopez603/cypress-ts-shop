@@ -4,7 +4,6 @@ declare namespace Cypress {
 		 * Navigate to the homepage
 		 */
 		visitHomePage(): Chainable<Element>
-
 		/**
 		 * Navigate to the Inventory Page
 		 */
