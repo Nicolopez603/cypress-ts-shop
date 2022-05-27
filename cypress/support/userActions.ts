@@ -1,7 +1,7 @@
 declare namespace Cypress {
 	interface Chainable {
 		/**
-		 * @param username - takes username or id
+		 * @param username - takes username
 		 * @param password - takes user password
 		 */
 		login(username: string, password: string): Chainable<Element>
@@ -10,11 +10,17 @@ declare namespace Cypress {
 		 */
 		addingProducts(): Chainable<Element>
 		/**
-     * Clicking in the cart
-     * and
+		 * Clicking in the cart
+		 * and
 		 * Clicking in the button 'Checkout'
 		 */
 		cart(): Chainable<Element>
+    /**
+     * @param firstname - takes first name
+     * @param lastname - takes last name
+     * @param postalcode - takes postal code
+     */
+    checkoutInformation(firstname: string, lastname: string, postalcode: string): Chainable<Element>
 	}
 }
 
@@ -30,6 +36,16 @@ Cypress.Commands.add('addingProducts', () => {
 })
 
 Cypress.Commands.add('cart', () => {
-  cy.get('.shopping_cart_link').click()
-  cy.get('#checkout').click()
+	cy.get('.shopping_cart_link').click()
+	cy.get('#checkout').click()
 })
+
+Cypress.Commands.add(
+	'checkoutInformation',
+	(firstname, lastname, postalcode) => {
+		cy.get('#first-name').type(firstname)
+		cy.get('#last-name').type(lastname)
+		cy.get('#postal-code').type(postalcode)
+    cy.get('#continue').click()
+	}
+)
