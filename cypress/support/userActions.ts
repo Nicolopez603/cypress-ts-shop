@@ -15,12 +15,20 @@ declare namespace Cypress {
 		 * Clicking in the button 'Checkout'
 		 */
 		cart(): Chainable<Element>
-    /**
-     * @param firstname - takes first name
-     * @param lastname - takes last name
-     * @param postalcode - takes postal code
+		/**
+		 * @param firstname - takes first name
+		 * @param lastname - takes last name
+		 * @param postalcode - takes postal code
+		 */
+		checkoutInformation(
+			firstname: string,
+			lastname: string,
+			postalcode: string
+		): Chainable<Element>
+    /*
+    *
      */
-    checkoutInformation(firstname: string, lastname: string, postalcode: string): Chainable<Element>
+		checkoutOverview(): Chainable<Element>
 	}
 }
 
@@ -46,6 +54,13 @@ Cypress.Commands.add(
 		cy.get('#first-name').type(firstname)
 		cy.get('#last-name').type(lastname)
 		cy.get('#postal-code').type(postalcode)
-    cy.get('#continue').click()
+		cy.get('#continue').click()
 	}
 )
+
+Cypress.Commands.add('checkoutOverview',()=>{
+  cy.get('.title').should('contain.text', 'Checkout: Overview').and('be.visible')
+  cy.get('.summary_info > :nth-child(1)').should('be.visible')
+  cy.get('.summary_info > :nth-child(3)').should('be.visible')
+  cy.get('#finish').click()
+})
