@@ -25,10 +25,14 @@ declare namespace Cypress {
 			lastname: string,
 			postalcode: string
 		): Chainable<Element>
-    /*
-    *
-     */
+		/*
+		 *
+		 */
 		checkoutOverview(): Chainable<Element>
+		/**
+		 *
+		 */
+		finish(): Chainable<Element>
 	}
 }
 
@@ -58,9 +62,20 @@ Cypress.Commands.add(
 	}
 )
 
-Cypress.Commands.add('checkoutOverview',()=>{
-  cy.get('.title').should('contain.text', 'Checkout: Overview').and('be.visible')
-  cy.get('.summary_info > :nth-child(1)').should('be.visible')
-  cy.get('.summary_info > :nth-child(3)').should('be.visible')
-  cy.get('#finish').click()
+Cypress.Commands.add('checkoutOverview', () => {
+	cy.get('.title')
+		.should('contain.text', 'Checkout: Overview')
+		.and('be.visible')
+	cy.get('.summary_info > :nth-child(1)').should('be.visible')
+	cy.get('.summary_info > :nth-child(3)').should('be.visible')
+	cy.get('#finish').click()
+})
+
+Cypress.Commands.add('finish', () => {
+	cy.get('.title').should('contain.text', 'Checkout: Complete')
+	cy.get('.complete-header').should(
+		'contain.text',
+		'THANK YOU FOR YOUR ORDER'
+	)
+	cy.get('.pony_express').should('be.visible')
 })
