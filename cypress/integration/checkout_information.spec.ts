@@ -1,5 +1,5 @@
-describe('Test Suite at Inventory', () => {
-	it('Visit the inventory and adding products', () => {
+describe('Test Suite at checkout: information', () => {
+	it('Visit the page checkout: information and validating elements', () => {
 		cy.visitHomePage()
 		cy.fixture('homePageData').then(({ username, password }) => {
 			cy.login(username, password)
